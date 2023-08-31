@@ -8,8 +8,25 @@
     <title>Music artists</title>
 </head>
 <body>
-    <header>Music artists</header>
-    <div id="artistList"></div>    
+    <header id="header">Music artists</header>
+    <input id="searchfield" type="text" placeholder="Search for artist">
+    <button id="search-button">Search</button>
+    <!-- Sort by -->
+    <select id="sort-by">
+        <option></option>
+        <option>Name (A-Z)</option>
+        <option>Active since (low-to-high)</option>
+    </select>
+    <!-- Filter categories -->
+    <label>Rock</label>
+    <input type="checkbox"></input>
+    <label>Grunge</label>
+    <input type="checkbox"></input>
+    <label>Blues</label>
+    <input type="checkbox"></input>
+    
+    <!-- grid-container -->
+    <div id="artist-list"></div>    
 
 
 

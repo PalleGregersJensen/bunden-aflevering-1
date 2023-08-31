@@ -2,7 +2,14 @@ body {
   background-color: skyblue;
 }
 
-#artistList {
+header {
+    height: 18vh;
+    font-size: larger;
+    display: flex;
+    justify-content: center;
+}
+
+#artist-list {
   display: grid;
   grid-template-columns: auto auto auto auto;
   width: auto;
