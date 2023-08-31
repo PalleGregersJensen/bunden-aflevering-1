@@ -16,3 +16,8 @@ header {
   height: auto;
   gap: 2em;
 }
+
+#artist-list, img {
+  height: 25vh;
+  width: 20vw;
+}
