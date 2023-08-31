@@ -10,6 +10,11 @@ async function start() {
   console.log(artists);
   showArtistsOnWebsite(artists);
   document.querySelector("#searchfield").addEventListener("keyup", searchArtist);
+  // filter categories checked
+  document.querySelector("#blues-checkbox").addEventListener("change", filterByGenre);
+  document.querySelector("#grunge-checkbox").addEventListener("change", filterByGenre);
+  document.querySelector("#rock-checkbox").addEventListener("change", filterByGenre);
+  document.querySelector("#other-checkbox").addEventListener("change", filterByGenre);
 }
 
 // Get JSON-data
@@ -37,6 +42,44 @@ function showArtistsOnWebsite(artistList) {
 // Filter by genre
 function filterByGenre() {
   console.log("Filter by genre");
+  const rockGenre = document.querySelector("#rock-checkbox");
+  const bluesGenre = document.querySelector("#blues-checkbox");
+  const grungeGenre = document.querySelector("#grunge-checkbox");
+  const otherGenre = document.querySelector("#other-checkbox");
+  if (rockGenre.checked) {
+    console.log("rockgenre checked");
+    const rockArtists = artists.filter(checkGenre);
+    console.log(rockArtists);
+  } else if (bluesGenre.checked) {
+    console.log("bluesgenre checked");
+    const bluesArtists = artists.filter(checkGenre);
+    console.log(bluesArtists);
+  } else if (grungeGenre.checked) {
+    console.log("grungegenre checked");
+    const grungeArtists = artists.filter(checkGenre);
+    console.log(grungeArtists);
+  } else if (otherGenre.checked) {
+    console.log("othergenre checked");
+    const otherArtists = artists.filter(checkGenre); 
+    console.log(otherArtists);
+  }
+}
+
+function checkGenre(artist) {
+  console.log("Check genre");
+  const rockGenre = document.querySelector("#rock-checkbox");
+  const bluesGenre = document.querySelector("#blues-checkbox");
+  const grungeGenre = document.querySelector("#grunge-checkbox");
+  const otherGenre = document.querySelector("#other-checkbox");
+  if (grungeGenre.checked) {
+    return artist.genres === "Grunge";
+  } else if (rockGenre.checked) {
+    return artist.genres === "Rock";
+  } else if (bluesGenre.checked) {
+    return artist.genres === "Blues";
+  } else if (otherGenre.checked) {
+    return artist.genres === "Other";
+  }
 }
 
 // Search artists
