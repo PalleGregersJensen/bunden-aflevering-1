@@ -1,0 +1,11 @@
+body {
+  background-color: skyblue;
+}
+
+#artistList {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  width: auto;
+  height: auto;
+  gap: 2em;
+}
