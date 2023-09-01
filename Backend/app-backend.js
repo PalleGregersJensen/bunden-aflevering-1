@@ -55,8 +55,8 @@ app.put("/artists/:id", async (request, response) => {
   artistToUpdate.name = body.name;
   artistToUpdate.title = body.title;
 
-  fs.writeFile("data.json", JSON.stringify(users));
-  response.json(users);
+  fs.writeFile("data.json", JSON.stringify(artists));
+  response.json(artists);
 });
 
 // Delete user
@@ -65,10 +65,10 @@ app.delete("/users/:id", async (request, response) => {
   console.log(id);
 
   const data = await fs.readFile("data.json");
-  const users = JSON.parse(data);
+  const artists = JSON.parse(data);
 
-  const newUsers = users.filter((user) => user.id !== id);
-  fs.writeFile("data.json", JSON.stringify(newUsers));
+  const newArtists = artists.filter((artist) => artist.id !== id);
+  fs.writeFile("data.json", JSON.stringify(newArtists));
 
-  response.json(users);
+  response.json(artists);
 });

@@ -1,12 +1,12 @@
 "use strict";
 
-let artists = [];
+let endpoint = "http://localhost:3000"
 
 window.addEventListener("load", start);
 
 async function start() {
   console.log("JS kører");
-  artists = await getJsonData();
+  let artists = await getJsonData();
   console.log(artists);
   showArtistsOnWebsite(artists);
   document.querySelector("#searchfield").addEventListener("keyup", searchArtist);
@@ -19,7 +19,7 @@ async function start() {
 
 // Get JSON-data
 async function getJsonData() {
-  const response = await fetch("artists.json");
+  const response = await fetch(`${endpoint}/artists`);
   console.log(response);
   const data = await response.json();
   console.log(data);
