@@ -38,28 +38,28 @@
         <form id="form-create-new-artist">
             <label>Create new artist</label> <br>
             <label>Name</label>
-            <input type="text" id="create-new-artist-name" value="">
+            <input type="text" id="create-new-artist-name" value="" name="name">
             <label>Birthdate</label>
-            <input type="text" id="create-new-artist-birthdate" placeholder="YYYY-MM-DD" value="">
+            <input type="text" id="create-new-artist-birthdate" placeholder="YYYY-MM-DD" value="" name="birthdate">
             <label>Active since</label>
-            <input type="text" id="create-new-artist-active-since" value="">
+            <input type="text" id="create-new-artist-active-since" value="" name="active-since">
             <label>Genre</label> <br>
             <label for="create-new-artist-genre-blues">Blues</label>
-            <input type="radio" id="create-new-artist-genre-blues" name="create-new-artist-genre" value="Blues">
+            <input type="radio" id="create-new-artist-genre-blues" name="genres" value="Blues" >
             <label for="create-new-artist-genre-grunge">Grunge</label>
-            <input type="radio" id="create-new-artist-genre-grunge" name="create-new-artist-genre" value="Grunge">
+            <input type="radio" id="create-new-artist-genre-grunge" name="genres" value="Grunge" >
             <label for="create-new-artist-genre-rock">Rock</label>
-            <input type="radio" id="create-new-artist-genre-rock" name="create-new-artist-genre" value="Rock">
+            <input type="radio" id="create-new-artist-genre-rock" name="genres" value="Rock" >
             <label for="create-new-artist-genre-other">Other</label>
-            <input type="radio" id="create-new-artist-genre-other" name="create-new-artist-genre" value="Other">
+            <input type="radio" id="create-new-artist-genre-other" name="genres" value="Other" >
             <label>Labels</label>
-            <input type="text" id="create-new-artist-labels">
+            <input type="text" id="create-new-artist-labels" name="labels">
             <label>Website</label>
-            <input type="url" id="create-new-artist-website">
+            <input type="url" id="create-new-artist-website" name="website">
             <label>Image</label>
-            <input type="url" id="create-new-artist-image">
+            <input type="url" id="create-new-artist-image" name="image">
             <label>Short description</label>
-            <input textarea name="create-new-artist-short-description" rows="4" cols="50" id="create-new-artist-short-description">
+            <input textarea name="short-description" rows="4" cols="50" id="create-new-artist-short-description" name="short-description">
             <button type="submit">Submit</button>
             <button>Cancel</button>
         </form>

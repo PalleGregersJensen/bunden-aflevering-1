@@ -1,4 +1,4 @@
-import express, { response } from "express";
+import express from "express";
 import fs from "fs/promises";
 import cors from "cors";
 
@@ -26,15 +26,16 @@ app.get("/artists", async (request, response) => {
 });
 
 // Create artist
-app.post("/artist", async (request, response) => {
+app.post("/artists", async (request, response) => {
   const newArtist = request.body;
-  newUser.id = new Date().getTime();
-  console.log(newUser);
-  const data = await fs.readFile("data.json");
-  const users = JSON.parse(data);
-  users.push(newArtist);
   console.log(newArtist);
-  fs.writeFile("data.json", JSON.stringify(artists));
+  newArtist.id = new Date().getTime();
+  console.log(newArtist.id);
+  const data = await fs.readFile("artists.json");
+  const artists = JSON.parse(data);
+  artists.push(newArtist);
+  console.log(newArtist);
+  fs.writeFile("artists.json", JSON.stringify(artists));
   response.json(artists);
 });
 

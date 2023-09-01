@@ -144,3 +144,6 @@ function checkResultOfSearch(inputInSearchfield) {
     return input.name.toLowerCase().includes(inputLowerCase);
   }
 }
+
+
+export { endpoint };
