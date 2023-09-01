@@ -27,9 +27,43 @@
     <label>Other</label>
     <input id="other-checkbox" type="checkbox"></input>
     
+    <!-- Create new artist button -->
+    <button id="create-new-artist-button">Create new artist</button>
+
     <!-- grid-container -->
     <div id="artist-list"></div>    
 
+    <!-- dialog create new artist -->
+    <dialog id="dialog-create-new-artist">
+        <form id="form-create-new-artist">
+            <label>Create new artist</label> <br>
+            <label>Name</label>
+            <input type="text" id="create-new-artist-name" value="">
+            <label>Birthdate</label>
+            <input type="text" id="create-new-artist-birthdate" placeholder="YYYY-MM-DD" value="">
+            <label>Active since</label>
+            <input type="text" id="create-new-artist-active-since" value="">
+            <label>Genre</label> <br>
+            <label for="create-new-artist-genre-blues">Blues</label>
+            <input type="radio" id="create-new-artist-genre-blues" name="create-new-artist-genre" value="Blues">
+            <label for="create-new-artist-genre-grunge">Grunge</label>
+            <input type="radio" id="create-new-artist-genre-grunge" name="create-new-artist-genre" value="Grunge">
+            <label for="create-new-artist-genre-rock">Rock</label>
+            <input type="radio" id="create-new-artist-genre-rock" name="create-new-artist-genre" value="Rock">
+            <label for="create-new-artist-genre-other">Other</label>
+            <input type="radio" id="create-new-artist-genre-other" name="create-new-artist-genre" value="Other">
+            <label>Labels</label>
+            <input type="text" id="create-new-artist-labels">
+            <label>Website</label>
+            <input type="url" id="create-new-artist-website">
+            <label>Image</label>
+            <input type="url" id="create-new-artist-image">
+            <label>Short description</label>
+            <input textarea name="create-new-artist-short-description" rows="4" cols="50" id="create-new-artist-short-description">
+            <button type="submit">Submit</button>
+            <button>Cancel</button>
+        </form>
+    </dialog>
 
 
     <script src="app.js" type="module"></script>

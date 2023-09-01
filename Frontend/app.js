@@ -1,14 +1,21 @@
+import { createNewArtistClicked, closeCreateNewArtistForm, createNewArtist } from "./crud-functions.js"
+
 "use strict";
 
 let endpoint = "http://localhost:3000"
+let artists = [];
 
 window.addEventListener("load", start);
 
 async function start() {
   console.log("JS kører");
-  let artists = await getJsonData();
+  artists = await getJsonData();
   console.log(artists);
   showArtistsOnWebsite(artists);
+  // create new artist
+  document.querySelector("#create-new-artist-button").addEventListener("click", createNewArtistClicked);
+  document.querySelector("#form-create-new-artist").addEventListener("submit", createNewArtist);
+  // search functionality
   document.querySelector("#searchfield").addEventListener("keyup", searchArtist);
   // filter categories checked
   document.querySelector("#blues-checkbox").addEventListener("change", filterByGenre);

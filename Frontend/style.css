@@ -21,3 +21,8 @@ header {
   height: 25vh;
   width: 20vw;
 }
+
+#form-create-new-artist {
+  display: grid;
+  grid-template-columns: auto auto;
+}
