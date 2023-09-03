@@ -83,6 +83,8 @@ async function updateArtist(event) {
   const shortDescription = form.elements["short-description"].value;
   // update user
   const artistToUpdate = { name, birthdate, activeSince, image, genres, labels, website, shortDescription, };
+  console.log(artistToUpdate);
+  console.log(selectedArtist.id);
   const artistAsJson = JSON.stringify(artistToUpdate);
   const response = await fetch(`${endpoint}/artists/${selectedArtist.id}`, {
     method: "PUT",

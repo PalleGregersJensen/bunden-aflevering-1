@@ -24,7 +24,7 @@ async function start() {
   document.querySelector("#create-new-artist-button").addEventListener("click", createNewArtistClicked);
   document.querySelector("#form-create-new-artist").addEventListener("submit", createNewArtist);
   // update artist  
-  document.querySelector("#update-artist-button").addEventListener("submit", updateArtist);
+  document.querySelector("#form-update-artist").addEventListener("submit", updateArtist);
   // search functionality
   document.querySelector("#searchfield").addEventListener("keyup", searchArtist);
   // filter categories checked
