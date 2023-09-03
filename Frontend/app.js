@@ -1,8 +1,8 @@
-import { createNewArtistClicked, closeCreateNewArtistForm, createNewArtist } from "./crud-functions.js"
+import { createNewArtistClicked, closeCreateNewArtistForm, createNewArtist, updateArtistClicked, deleteArtistClicked } from "./crud-functions.js";
 
-"use strict";
+("use strict");
 
-let endpoint = "http://localhost:3000"
+let endpoint = "http://localhost:3000";
 let artists = [];
 
 window.addEventListener("load", start);
@@ -37,10 +37,22 @@ async function getJsonData() {
 function showArtistsOnWebsite(artistList) {
   document.querySelector("#artist-list").innerHTML = "";
   for (const artist of artistList) {
-    const artistHtml = /*html*/ `<div>Name: ${artist.name} <br> Active since: ${artist.activeSince} <br> <img src="${artist.image}"/> <br><button class="update">Update</button> <button class="delete">Delete</button> <br> <button class="add-to-favourites">Add to favourites</button></button></div></button>`;
+    const artistHtml = /*html*/ `<div>Name: ${artist.name} <br> Active since: ${artist.activeSince} <br> <img src="${artist.image}"/> <br><button class="update-artist-button">Update</button> <button class="delete-artist-button">Delete</button> <br> <button class="add-to-favourites">Add to favourites</button></button></div></button>`;
     document.querySelector("#artist-list").insertAdjacentHTML("beforeend", artistHtml);
+    
+    // delete artist
+    document
+      .querySelector("#artist-list div:last-child .delete-artist-button")
+      .addEventListener("click", () => deleteArtistClicked(artist.id));
+      
+      // update artist
+      document
+      .querySelector("#artist-list div:last-child .update-artist-button")
+      .addEventListener("click", () => updateArtistClicked(artist));
+    }
   }
-}
+
+
 
 // Sort by name
 
@@ -70,7 +82,7 @@ function filterByGenre() {
     showArtistsOnWebsite(grungeArtists);
   } else if (otherGenre.checked) {
     console.log("othergenre checked");
-    const otherArtists = artists.filter(checkGenre); 
+    const otherArtists = artists.filter(checkGenre);
     console.log(otherArtists);
     showArtistsOnWebsite(otherArtists);
   } else if (!otherGenre.checked && !grungeGenre.checked && !rockGenre.checked && !bluesGenre.checked) {
@@ -104,7 +116,6 @@ function checkGenre(artist) {
     return true; // If no genre checkboxes are checked, show all artists
   }
 }
-
 
 // function checkGenre(artist) {
 //   console.log("Check genre");
@@ -144,6 +155,5 @@ function checkResultOfSearch(inputInSearchfield) {
     return input.name.toLowerCase().includes(inputLowerCase);
   }
 }
-
 
 export { endpoint };

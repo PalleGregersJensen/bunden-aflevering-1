@@ -53,4 +53,13 @@ async function createNewArtist(event) {
   }
 }
 
-export { createNewArtistClicked, closeCreateNewArtistForm, createNewArtist };
+function updateArtistClicked(artistObject) {
+    console.log("update artist clciked");
+}
+
+function deleteArtistClicked(artistId) {
+  console.log("delete artist clciked");
+}
+
+
+export { createNewArtistClicked, closeCreateNewArtistForm, createNewArtist, updateArtistClicked, deleteArtistClicked};
