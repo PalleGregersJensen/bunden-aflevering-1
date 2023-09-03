@@ -82,9 +82,9 @@ async function updateArtist(event) {
   const website = form.website.value;
   const shortDescription = form.elements["short-description"].value;
   // update user
-  const artistToUpdate = { name, birthdate, activeSince, image, genres, labels, website, shortDescription };
-  const userAsJson = JSON.stringify(artistToUpdate);
-  const response = await fetch(`${endpoint}/artists/${selectedUser.id}`, {
+  const artistToUpdate = { name, birthdate, activeSince, image, genres, labels, website, shortDescription, };
+  const artistAsJson = JSON.stringify(artistToUpdate);
+  const response = await fetch(`${endpoint}/artists/${selectedArtist.id}`, {
     method: "PUT",
     body: artistAsJson,
     headers: {
@@ -116,4 +116,5 @@ export {
   updateArtistClicked,
   deleteArtistClicked,
   updateArtist,
+  selectedArtist
 };

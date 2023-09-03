@@ -5,6 +5,7 @@ import {
   updateArtistClicked,
   deleteArtistClicked,
   updateArtist,
+  selectedArtist
 } from "./crud-functions.js";
 
 ("use strict");

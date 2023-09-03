@@ -21,7 +21,7 @@ app.get("/artists", async (request, response) => {
     const data = await fs.readFile("artists.json");
     const artists = JSON.parse(data);
     artists.sort((a, b) => a.name.localeCompare(b.name));
-    console.log(artists);
+    // console.log(artists);
     response.json(artists);
 });
 
@@ -34,7 +34,7 @@ app.post("/artists", async (request, response) => {
   const data = await fs.readFile("artists.json");
   const artists = JSON.parse(data);
   artists.push(newArtist);
-  console.log(newArtist);
+  // console.log(newArtist);
   fs.writeFile("artists.json", JSON.stringify(artists));
   response.json(artists);
 });
@@ -53,13 +53,11 @@ app.put("/artists/:id", async (request, response) => {
   artistToUpdate.image = body.image;
   artistToUpdate.activeSince = body.activeSince;
   artistToUpdate.name = body.name;
-  artistToUpdate.title = body.title;
   artistToUpdate.birthdate = body.birthdate;
   artistToUpdate.genres = body.genres;
   artistToUpdate.labels = body.labels;
   artistToUpdate.website = body.website;
   artistToUpdate.shortDescription = body.shortDescription;
-
 
   fs.writeFile("artists.json", JSON.stringify(artists));
   response.json(artists);
