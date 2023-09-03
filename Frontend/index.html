@@ -65,6 +65,38 @@
         </form>
     </dialog>
 
+    <!-- dialog update artist object-->
+    <dialog id="dialog-update-artist">
+        <form id="form-update-artist">
+            <label>Update artist</label> <br>
+            <label>Name</label>
+            <input type="text" id="update-artist-name" value="" name="name"> <br>
+            <label>Birthdate</label> 
+            <input type="text" id="update-artist-birthdate" value="" name="birthdate"> <br>
+            <label>Active since</label>
+            <input type="text" id="update-artist-active-since" value="" name="active-since"> <br>
+            <label>Genre</label> <br>
+            <label for="create-new-artist-genre-blues">Blues</label> 
+            <input type="radio" id="update-artist-genre-blues" name="genres" value="Blues"> <br> 
+            <label for="update-artist-genre-grunge">Grunge</label>
+            <input type="radio" id="update-artist-genre-grunge" name="genres" value="Grunge" > <br>
+            <label for="update-artist-genre-rock">Rock</label>
+            <input type="radio" id="create-new-artist-genre-rock" name="genres" value="Rock" > <br>
+            <label for="update-artist-genre-other">Other</label>
+            <input type="radio" id="update-artist-genre-other" name="genres" value="Other" > <br>
+            <label>Labels</label>
+            <input type="text" id="update-artist-labels" name="labels"> <br>
+            <label>Website</label>
+            <input type="url" id="update-artist-website" name="website"> <br>
+            <label>Image</label>
+            <input type="url" id="update-artist-image" name="image"> <br>
+            <label>Short description</label>
+            <input type="textarea" rows="4" cols="50" id="update-artist-short-description" name="short-description"> <br>
+            <button type="submit" id="update-artist-button">Submit</button>
+            <button>Cancel</button>
+        </form>
+    </dialog>
+
 
     <script src="app.js" type="module"></script>
 </body>

@@ -54,6 +54,12 @@ app.put("/artists/:id", async (request, response) => {
   artistToUpdate.activeSince = body.activeSince;
   artistToUpdate.name = body.name;
   artistToUpdate.title = body.title;
+  artistToUpdate.birthdate = body.birthdate;
+  artistToUpdate.genres = body.genres;
+  artistToUpdate.labels = body.labels;
+  artistToUpdate.website = body.website;
+  artistToUpdate.shortDescription = body.shortDescription;
+
 
   fs.writeFile("artists.json", JSON.stringify(artists));
   response.json(artists);

@@ -1,11 +1,11 @@
-import {endpoint, start} from "./app.js"
+import { endpoint, start } from "./app.js";
 
-// console.log(endpoint);
+let selectedArtist;
 
 // create new artist button clicked
 function createNewArtistClicked() {
-    console.log("create new artist clicked");
-    document.querySelector("#dialog-create-new-artist").showModal();
+  console.log("create new artist clicked");
+  document.querySelector("#dialog-create-new-artist").showModal();
 }
 
 // close create new artist form
@@ -37,7 +37,7 @@ async function createNewArtist(event) {
   const shortDescription = form.elements[`short-description`].value;
   console.log(shortDescription);
   // create a new user
-  const newArtist = { name, birthdate, activeSince,genres, labels, website, image, shortDescription };
+  const newArtist = { name, birthdate, activeSince, genres, labels, website, image, shortDescription };
   const artistAsJson = JSON.stringify(newArtist);
   const response = await fetch(`${endpoint}/artists`, {
     method: "POST",
@@ -54,20 +54,66 @@ async function createNewArtist(event) {
 }
 
 function updateArtistClicked(artistObject) {
-    console.log("update artist clciked");
+  console.log("update artist clciked");
+  selectedArtist = artistObject;
+  console.log(selectedArtist);
+  const form = document.querySelector("#form-update-artist");
+  form.image.value = artistObject.image;
+  form.name.value = artistObject.name;
+  form.birthdate.value = artistObject.birthdate;
+  form.elements["active-since"].value = artistObject.activeSince;
+  form.genres.value = artistObject.genres;
+  form.labels.value = artistObject.labels;
+  form.website.value = artistObject.website;
+  form.elements["short-description"].value = artistObject.shortDescription;
+  document.querySelector("#dialog-update-artist").showModal();
+}
+
+async function updateArtist(event) {
+  console.log("update artist");
+  event.preventDefault();
+  const form = event.target;
+  const name = form.name.value;
+  const birthdate = form.birthdate.value;
+  const activeSince = form.elements["active-since"].value;
+  const image = form.image.value;
+  const genres = form.genres.value;
+  const labels = form.labels.value;
+  const website = form.website.value;
+  const shortDescription = form.elements["short-description"].value;
+  // update user
+  const artistToUpdate = { name, birthdate, activeSince, image, genres, labels, website, shortDescription };
+  const userAsJson = JSON.stringify(artistToUpdate);
+  const response = await fetch(`${endpoint}/artists/${selectedUser.id}`, {
+    method: "PUT",
+    body: artistAsJson,
+    headers: {
+      "content-Type": "application/json",
+    },
+  });
+  if (response.ok) {
+    // if success, run start
+    start();
+  }
 }
 
 async function deleteArtistClicked(artistId) {
-    console.log("delete artist clciked");
-    console.log(artistId);
-    const response = await fetch(`${endpoint}/artists/${artistId}`, {
-        method: "DELETE",
-      });
-      if (response.ok) {
-        // if success, update the users grid
-        start();
-      }
-    }
+  console.log("delete artist clciked");
+  console.log(artistId);
+  const response = await fetch(`${endpoint}/artists/${artistId}`, {
+    method: "DELETE",
+  });
+  if (response.ok) {
+    // if success, update the users grid
+    start();
+  }
+}
 
-
-export { createNewArtistClicked, closeCreateNewArtistForm, createNewArtist, updateArtistClicked, deleteArtistClicked};
+export {
+  createNewArtistClicked,
+  closeCreateNewArtistForm,
+  createNewArtist,
+  updateArtistClicked,
+  deleteArtistClicked,
+  updateArtist,
+};

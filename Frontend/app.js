@@ -1,4 +1,11 @@
-import { createNewArtistClicked, closeCreateNewArtistForm, createNewArtist, updateArtistClicked, deleteArtistClicked } from "./crud-functions.js";
+import {
+  createNewArtistClicked,
+  closeCreateNewArtistForm,
+  createNewArtist,
+  updateArtistClicked,
+  deleteArtistClicked,
+  updateArtist,
+} from "./crud-functions.js";
 
 ("use strict");
 
@@ -15,6 +22,8 @@ async function start() {
   // create new artist
   document.querySelector("#create-new-artist-button").addEventListener("click", createNewArtistClicked);
   document.querySelector("#form-create-new-artist").addEventListener("submit", createNewArtist);
+  // update artist  
+  document.querySelector("#update-artist-button").addEventListener("submit", updateArtist);
   // search functionality
   document.querySelector("#searchfield").addEventListener("keyup", searchArtist);
   // filter categories checked
@@ -39,20 +48,18 @@ function showArtistsOnWebsite(artistList) {
   for (const artist of artistList) {
     const artistHtml = /*html*/ `<div>Name: ${artist.name} <br> Active since: ${artist.activeSince} <br> <img src="${artist.image}"/> <br><button class="update-artist-button">Update</button> <button class="delete-artist-button">Delete</button> <br> <button class="add-to-favourites">Add to favourites</button></button></div></button>`;
     document.querySelector("#artist-list").insertAdjacentHTML("beforeend", artistHtml);
-    
+
     // delete artist
     document
       .querySelector("#artist-list div:last-child .delete-artist-button")
       .addEventListener("click", () => deleteArtistClicked(artist.id));
-      
-      // update artist
-      document
+
+    // update artist
+    document
       .querySelector("#artist-list div:last-child .update-artist-button")
       .addEventListener("click", () => updateArtistClicked(artist));
-    }
   }
-
-
+}
 
 // Sort by name
 
