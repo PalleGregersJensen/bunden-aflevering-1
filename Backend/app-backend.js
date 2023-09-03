@@ -40,12 +40,11 @@ app.post("/artists", async (request, response) => {
 });
 
 // Update artist
-
 app.put("/artists/:id", async (request, response) => {
   const id = Number(request.params.id);
   console.log(id);
 
-  const data = await fs.readFile("data.json");
+  const data = await fs.readFile("artists.json");
   const artists = JSON.parse(data);
 
   let artistToUpdate = artists.find((artist) => artist.id === id);
@@ -56,20 +55,21 @@ app.put("/artists/:id", async (request, response) => {
   artistToUpdate.name = body.name;
   artistToUpdate.title = body.title;
 
-  fs.writeFile("data.json", JSON.stringify(artists));
+  fs.writeFile("artists.json", JSON.stringify(artists));
   response.json(artists);
 });
 
-// Delete user
-app.delete("/users/:id", async (request, response) => {
+// Delete artist
+app.delete("/artists/:id", async (request, response) => {
   const id = Number(request.params.id);
   console.log(id);
 
-  const data = await fs.readFile("data.json");
+  const data = await fs.readFile("artists.json");
+  console.log(data);
   const artists = JSON.parse(data);
 
   const newArtists = artists.filter((artist) => artist.id !== id);
-  fs.writeFile("data.json", JSON.stringify(newArtists));
+  fs.writeFile("artists.json", JSON.stringify(newArtists));
 
   response.json(artists);
 });
