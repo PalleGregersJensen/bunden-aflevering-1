@@ -1,4 +1,4 @@
-import {endpoint} from "./app.js"
+import {endpoint, start} from "./app.js"
 
 // console.log(endpoint);
 
@@ -57,9 +57,17 @@ function updateArtistClicked(artistObject) {
     console.log("update artist clciked");
 }
 
-function deleteArtistClicked(artistId) {
-  console.log("delete artist clciked");
-}
+async function deleteArtistClicked(artistId) {
+    console.log("delete artist clciked");
+    console.log(artistId);
+    const response = await fetch(`${endpoint}/artists/${artistId}`, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        // if success, update the users grid
+        start();
+      }
+    }
 
 
 export { createNewArtistClicked, closeCreateNewArtistForm, createNewArtist, updateArtistClicked, deleteArtistClicked};

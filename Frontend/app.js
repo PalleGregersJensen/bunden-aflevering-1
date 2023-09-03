@@ -156,4 +156,4 @@ function checkResultOfSearch(inputInSearchfield) {
   }
 }
 
-export { endpoint };
+export { endpoint, start };
