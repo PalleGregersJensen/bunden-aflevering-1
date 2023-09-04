@@ -9,6 +9,7 @@
 </head>
 <body>
     <header id="header">Music artists</header>
+    <div id="sort-search-filter-create">
     <input id="searchfield" type="text" placeholder="Search for artist">
     <button id="search-button">Search</button>
     <!-- Sort by -->
@@ -29,9 +30,15 @@
     
     <!-- Create new artist button -->
     <button id="create-new-artist-button">Create new artist</button>
+</div>
+    <!-- display favourites -->
+    <button id="show-favourites-button">Show favourite artists</button>
 
-    <!-- grid-container -->
+    <!-- grid-container for full artists list -->
     <div id="artist-list"></div>    
+
+<!-- grid-container for favourite artists list -->
+    <div id="favourites-list"></div>
 
     <!-- dialog create new artist -->
     <dialog id="dialog-create-new-artist">

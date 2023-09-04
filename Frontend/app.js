@@ -8,10 +8,13 @@ import {
   selectedArtist
 } from "./crud-functions.js";
 
-("use strict");
+import { addArtistToFavourites, showFavouriteArtists } from "./favourites.js";
+
+"use strict";
 
 let endpoint = "http://localhost:3000";
 let artists = [];
+let favourites = [];
 
 window.addEventListener("load", start);
 
@@ -32,6 +35,8 @@ async function start() {
   document.querySelector("#grunge-checkbox").addEventListener("change", filterByGenre);
   document.querySelector("#rock-checkbox").addEventListener("change", filterByGenre);
   document.querySelector("#other-checkbox").addEventListener("change", filterByGenre);
+  // show favourites
+  document.querySelector("#show-favourites-button").addEventListener("click", showFavouriteArtists);
 }
 
 // Get JSON-data
@@ -59,6 +64,11 @@ function showArtistsOnWebsite(artistList) {
     document
       .querySelector("#artist-list div:last-child .update-artist-button")
       .addEventListener("click", () => updateArtistClicked(artist));
+
+    // add to fovurites
+    document
+      .querySelector("#artist-list div:last-child .add-to-favourites")
+      .addEventListener("click", () => addArtistToFavourites(artist));
   }
 }
 
@@ -164,4 +174,4 @@ function checkResultOfSearch(inputInSearchfield) {
   }
 }
 
-export { endpoint, start };
+export { endpoint, start, favourites };

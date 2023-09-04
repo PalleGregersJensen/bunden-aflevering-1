@@ -17,6 +17,7 @@ header {
   gap: 2em;
 }
 
+/* images in full list of artists */
 #artist-list, img {
   height: 25vh;
   width: 20vw;
@@ -25,4 +26,8 @@ header {
 #form-create-new-artist {
   display: grid;
   grid-template-columns: auto auto;
+}
+
+.hidden {
+  display: none;
 }
