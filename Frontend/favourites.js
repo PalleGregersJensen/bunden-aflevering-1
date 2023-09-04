@@ -1,20 +1,24 @@
 import { favourites, endpoint } from "./app.js";
 
 // Add artist to favourites and push to favourites-array
-async function addArtistToFavourites(artistObject) {
+function addArtistToFavourites(artistObject) {
   console.log("læses dette");
   console.log(artistObject);
   favourites.push(artistObject);
   console.log(favourites);
-  
+  let favouritesAsString = JSON.stringify(favourites);
+  console.log(favourites);
+  localStorage.setItem("favouritesToBeStored", favouritesAsString);
 }
 // show favourite artists on website and hide other features, that does not work here
 function showFavouriteArtists() {
   console.log("Show favourite artists");
   document.querySelector("#sort-search-filter-create").classList.add("hidden");
-    document.querySelector("#show-favourites-button").classList.add("hidden");
-    document.querySelector("#show-all-artists-button").classList.remove("hidden");
-  showFavouritesOnWebsite(favourites);
+  document.querySelector("#show-favourites-button").classList.add("hidden");
+  document.querySelector("#show-all-artists-button").classList.remove("hidden");
+  let favouritesAsString = localStorage.getItem("favouritesToBeStored");
+  let newfavourites = JSON.parse(favouritesAsString);
+  showFavouritesOnWebsite(newfavourites);
 }
 
 function showFavouritesOnWebsite(artistList) {
