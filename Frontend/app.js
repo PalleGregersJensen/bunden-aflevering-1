@@ -5,12 +5,12 @@ import {
   updateArtistClicked,
   deleteArtistClicked,
   updateArtist,
-  selectedArtist
+  selectedArtist,
 } from "./crud-functions.js";
 
 import { addArtistToFavourites, showFavouriteArtists } from "./favourites.js";
 
-"use strict";
+("use strict");
 
 let endpoint = "http://localhost:3000";
 let artists = [];
@@ -26,7 +26,7 @@ async function start() {
   // create new artist
   document.querySelector("#create-new-artist-button").addEventListener("click", createNewArtistClicked);
   document.querySelector("#form-create-new-artist").addEventListener("submit", createNewArtist);
-  // update artist  
+  // update artist
   document.querySelector("#form-update-artist").addEventListener("submit", updateArtist);
   // search functionality
   document.querySelector("#searchfield").addEventListener("keyup", searchArtist);
@@ -37,6 +37,11 @@ async function start() {
   document.querySelector("#other-checkbox").addEventListener("change", filterByGenre);
   // show favourites
   document.querySelector("#show-favourites-button").addEventListener("click", showFavouriteArtists);
+  // show all artists and end favourites view
+  document.querySelector("#show-all-artists-button").addEventListener("click", start);
+  document.querySelector("#sort-search-filter-create").classList.remove("hidden");
+  document.querySelector("#show-favourites-button").classList.remove("hidden");
+  document.querySelector("#show-all-artists-button").classList.add("hidden");
 }
 
 // Get JSON-data
