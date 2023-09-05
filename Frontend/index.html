@@ -38,8 +38,10 @@
     <button id="show-all-artists-button" class="hidden">Show all artists</button>
 
     <!-- Error message in case of no favourites chosen -->
-    <p id="message-empty-list" class="hidden">No favourites selected</p>
-    
+    <dialog id="message-empty-list">
+        <p>No favourites selected</p>
+        <button id="message-empty-list-ok-button">OK</button>
+    </dialog>
     <!-- grid-container for full artists list -->
     <div id="artist-list"></div>    
 

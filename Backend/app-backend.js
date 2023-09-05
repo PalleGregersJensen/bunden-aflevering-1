@@ -38,7 +38,7 @@ app.get("/artists/:id", async (request, response) => {
   const artists = JSON.parse(data);
   let artistToGet = artists.find((artist) => artist.id === id);
   console.log(artistToGet);
-  if (artistToGet == undefined) {
+  if (!artistToGet) {
    response.status(404).json({error: "Artist not found"}) 
   } else {
     response.json(artistToGet);

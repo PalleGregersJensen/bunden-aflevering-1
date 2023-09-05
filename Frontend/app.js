@@ -16,6 +16,7 @@ import { addArtistToFavourites, showFavouriteArtists } from "./favourites.js";
 let endpoint = "http://localhost:3000";
 let artists = [];
 let favourites = [];
+let filteredArtists = [];
 
 window.addEventListener("load", start);
 
@@ -23,6 +24,8 @@ async function start() {
   console.log("JS kører");
   artists = await getJsonData();
   console.log(artists);
+  filteredArtists = artists;
+  console.log(filteredArtists);
   showArtistsOnWebsite(artists);
   // create new artist
   document.querySelector("#create-new-artist-button").addEventListener("click", createNewArtistClicked);
@@ -49,6 +52,7 @@ async function start() {
   document.querySelector("#form-create-new-artist-close-button").addEventListener("click", closeCreateNewArtistForm);
   // close update artist form 
   document.querySelector("#form-update-artist-cancel-button").addEventListener("click", closeUpdateForm);
+  // close dialog no favourites selected
 }
 
 // Get JSON-data
@@ -64,7 +68,7 @@ async function getJsonData() {
 function showArtistsOnWebsite(artistList) {
   document.querySelector("#artist-list").innerHTML = "";
   for (const artist of artistList) {
-    const artistHtml = /*html*/ `<div>Name: ${artist.name} <br> Active since: ${artist.activeSince} <br> <img src="${artist.image}"/> <br><button class="update-artist-button">Update</button> <button class="delete-artist-button">Delete</button> <br> <button class="add-to-favourites">Add to favourites</button></button></div></button>`;
+    const artistHtml = /*html*/ `<div class="artist-container-in-create"><div>Name: ${artist.name} <br> Active since: ${artist.activeSince} <br> <img src="${artist.image}"/> <br></div><button class="update-artist-button">Update</button> <button class="delete-artist-button">Delete</button> <br> <button class="add-to-favourites">Add to favourites</button></button></div></button>`;
     document.querySelector("#artist-list").insertAdjacentHTML("beforeend", artistHtml);
 
     // delete artist
@@ -87,6 +91,8 @@ function showArtistsOnWebsite(artistList) {
 // Sort by name
 function handleSortBy() {
   const sortBy = document.querySelector("#sort-by").value;
+  // filteredArtists = filterByGenre();
+  console.log(filteredArtists);
   if (sortBy === "name-a-z") {
     console.log("name-a-z");
     artists.sort((a, b) => a.name.localeCompare(b.name));

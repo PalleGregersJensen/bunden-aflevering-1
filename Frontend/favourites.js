@@ -17,9 +17,9 @@ loadFavoritesFromLocalStorage();
 
 // Add artist to favourites and push to favourites-array
 function addArtistToFavourites(artistObject) {
-//   if (newFavourites.find((artistObject) => newFavourites.includes(artistObject))) {
-//     console.log("Artist already in list");
-//   } else
+  // if (newFavourites.find((artistObject) => newFavourites.includes(artistObject))) {
+  //   console.log("Artist already in list");
+  // } else
   {
     console.log("læses dette");
     console.log(artistObject);
@@ -48,12 +48,13 @@ function showFavouriteArtists() {
 
 // loop through favourites-array and displayon website
 function showFavouritesOnWebsite(artistList) {
-    // if (artistList.length === 0) {
-    //     console.log("Empty array in favourites");
-    //     document.querySelector("#message-empty-list").classList.remove("hidden");
-    // } else 
-    {
   document.querySelector("#artist-list").innerHTML = "";
+  if (artistList.length === 0) {
+      console.log("Empty array in favourites");
+    document.querySelector("#message-empty-list").showModal();
+    document.querySelector("#message-empty-list-ok-button").addEventListener("click", closeNoFavouritesSelectedDialog);
+  } else 
+  {
   for (const artist of artistList) {
     const favouritesHtml = /*html*/ `<div>Name: ${artist.name} <br> Active since: ${artist.activeSince} <br> <img src="${artist.image}"/> <br> <button class="remove-artist-from-favourites-button">Remove from favourites</button> <br></button></div></button>`;
     document.querySelector("#artist-list").insertAdjacentHTML("beforeend", favouritesHtml);
@@ -65,6 +66,11 @@ function showFavouritesOnWebsite(artistList) {
   }
 }
 }
+
+function closeNoFavouritesSelectedDialog() {
+  document.querySelector("#message-empty-list").close();
+}
+
 // remove artist from favourites
 function removeArtistFromNewFavourites(artistObject) {
   console.log(artistObject);

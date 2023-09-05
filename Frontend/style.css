@@ -15,14 +15,18 @@ header {
   width: auto;
   height: auto;
   gap: 2em;
-  /* outline: solid 1em green; */
-  /* border: 1em solid black;  */
+  padding: 5%; 
 }
 
 /* images in full list of artists */
 #artist-list, img {
   height: 25vh;
   width: 20vw;
+}
+
+.artist-container-in-create {
+outline: solid 0.1em black;
+border: 0.1em solid whitesmoke; 
 }
 
 #form-create-new-artist {
