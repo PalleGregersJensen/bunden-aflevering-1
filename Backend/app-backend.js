@@ -1,22 +1,27 @@
+// imports
 import express from "express";
 import fs from "fs/promises";
 import cors from "cors";
 
+// variables
 const app = express();
 const port = 3000;
 
 app.use(express.json());
 app.use(cors());
 
+// listen
 app.listen(port, () => {
   console.log(`App is running on http://localhost:${port}`);
 });
 
+// get-request on "/"
 app.get("/", (request, response) => {
     response.send("My artists endpoint");
     console.log("læses dette");
 });
 
+// get artists
 app.get("/artists", async (request, response) => {
     const data = await fs.readFile("artists.json");
     const artists = JSON.parse(data);
@@ -24,6 +29,20 @@ app.get("/artists", async (request, response) => {
     // console.log(artists);
     response.json(artists);
 });
+
+// get single artist
+app.get("/artists/:id", async (request, response) => {
+  const id = Number(request.params.id);
+  console.log(id);
+  const data = await fs.readFile("artists.json");
+  const artists = JSON.parse(data);
+  let artistToGet = artists.find((artist) => artist.id === id);
+  console.log(artistToGet);
+  if (artistToGet == undefined) {
+   response.status(404).json({error: "Artist not found"}) 
+  } else {
+    response.json(artistToGet);
+  }});
 
 // Create artist
 app.post("/artists", async (request, response) => {

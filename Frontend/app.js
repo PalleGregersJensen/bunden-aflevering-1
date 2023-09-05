@@ -6,6 +6,7 @@ import {
   deleteArtistClicked,
   updateArtist,
   selectedArtist,
+  closeUpdateForm
 } from "./crud-functions.js";
 
 import { addArtistToFavourites, showFavouriteArtists } from "./favourites.js";
@@ -42,6 +43,10 @@ async function start() {
   document.querySelector("#sort-search-filter-create").classList.remove("hidden");
   document.querySelector("#show-favourites-button").classList.remove("hidden");
   document.querySelector("#show-all-artists-button").classList.add("hidden");
+  // close create new artist form
+  document.querySelector("#form-create-new-artist-close-button").addEventListener("click", closeCreateNewArtistForm);
+  // close update artist form 
+  document.querySelector("#form-update-artist-cancel-button").addEventListener("click", closeUpdateForm);
 }
 
 // Get JSON-data

@@ -15,6 +15,12 @@ function closeCreateNewArtistForm() {
   document.querySelector("#dialog-create-new-artist").close();
 }
 
+// close update artist form
+function closeUpdateForm() {
+  console.log("close update form");
+  document.querySelector("#dialog-update-artist").close();
+}
+
 // create new artist
 async function createNewArtist(event) {
   event.preventDefault();
@@ -118,5 +124,6 @@ export {
   updateArtistClicked,
   deleteArtistClicked,
   updateArtist,
-  selectedArtist
+  selectedArtist,
+  closeUpdateForm
 };

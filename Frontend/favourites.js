@@ -1,6 +1,7 @@
 import { favourites, endpoint } from "./app.js";
 
 let newFavourites = [];
+let favouritesAsString;
 
 // Add artist to favourites and push to favourites-array
 function addArtistToFavourites(artistObject) {
@@ -22,8 +23,8 @@ function showFavouriteArtists() {
   let favouritesAsString = localStorage.getItem("favouritesToBeStored");
   // lav favourites om til objekter i array igen
   newFavourites = JSON.parse(favouritesAsString);
-    newFavourites.sort((a, b) => a.name.localeCompare(b.name));
-    console.log(newFavourites);
+  newFavourites.sort((a, b) => a.name.localeCompare(b.name));
+  console.log(newFavourites);
   showFavouritesOnWebsite(newFavourites);
 }
 
@@ -43,15 +44,17 @@ function showFavouritesOnWebsite(artistList) {
 
 // remove artist from favourites
 function removeArtistFromNewFavourites(artistObject) {
-    console.log(artistObject);
-    const artistToBeRemoved = newFavourites.indexOf(artistObject);
-    console.log(artistToBeRemoved);
-    const artistToBeRemovedSeceondPosition = artistToBeRemoved;
-    console.log(artistToBeRemovedSeceondPosition);
-    const removedArtist = newFavourites.splice(artistToBeRemoved, artistToBeRemovedSeceondPosition);
-    console.log(removedArtist);
-    console.log(newFavourites);
-    showFavouritesOnWebsite(newFavourites);
+  console.log(artistObject);
+  console.log(newFavourites);
+  const artistToBeRemoved = newFavourites.indexOf(artistObject);
+  console.log(artistToBeRemoved);
+  // const artistToBeRemovedSeceondPosition = artistToBeRemoved;
+  //   console.log(artistToBeRemovedSeceondPosition);
+  const removedArtist = newFavourites.splice(artistToBeRemoved, 1);
+  console.log(removedArtist);
+  console.log(newFavourites);
+//   localStorage.setItem("favouritesToBeStored", favouritesAsString);
+  showFavouritesOnWebsite(newFavourites);
 }
 
 export { addArtistToFavourites, showFavouriteArtists };
