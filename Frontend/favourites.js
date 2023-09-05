@@ -3,6 +3,18 @@ import { favourites, endpoint } from "./app.js";
 let newFavourites = [];
 let favouritesAsString;
 
+// Load favorites from localStorage when the page loads
+function loadFavoritesFromLocalStorage() {
+  const favoritesAsString = localStorage.getItem("favouritesToBeStored");
+  if (favoritesAsString) {
+    newFavourites = JSON.parse(favoritesAsString);
+    showFavouritesOnWebsite(newFavourites);
+  }
+}
+
+// Call the function when the page loads
+loadFavoritesFromLocalStorage();
+
 // Add artist to favourites and push to favourites-array
 function addArtistToFavourites(artistObject) {
   console.log("læses dette");
@@ -30,6 +42,11 @@ function showFavouriteArtists() {
 
 // loop through favourites-array and displayon website
 function showFavouritesOnWebsite(artistList) {
+    // if (artistList.length === 0) {
+    //     console.log("Empty array in favourites");
+    //     document.querySelector("#message-empty-list").classList.remove("hidden");
+    // } else 
+    {
   document.querySelector("#artist-list").innerHTML = "";
   for (const artist of artistList) {
     const favouritesHtml = /*html*/ `<div>Name: ${artist.name} <br> Active since: ${artist.activeSince} <br> <img src="${artist.image}"/> <br> <button class="remove-artist-from-favourites-button">Remove from favourites</button> <br></button></div></button>`;
@@ -41,7 +58,7 @@ function showFavouritesOnWebsite(artistList) {
       .addEventListener("click", () => removeArtistFromNewFavourites(artist));
   }
 }
-
+}
 // remove artist from favourites
 function removeArtistFromNewFavourites(artistObject) {
   console.log(artistObject);
@@ -50,11 +67,12 @@ function removeArtistFromNewFavourites(artistObject) {
   console.log(artistToBeRemoved);
   // const artistToBeRemovedSeceondPosition = artistToBeRemoved;
   //   console.log(artistToBeRemovedSeceondPosition);
-  const removedArtist = newFavourites.splice(artistToBeRemoved, 1);
-  console.log(removedArtist);
-  console.log(newFavourites);
-//   localStorage.setItem("favouritesToBeStored", favouritesAsString);
-  showFavouritesOnWebsite(newFavourites);
+  if (artistToBeRemoved !== -1) {
+    const removedArtist = newFavourites.splice(artistToBeRemoved, 1);
+    console.log(removedArtist);
+    console.log(newFavourites);
+    localStorage.setItem("favouritesToBeStored", JSON.stringify(newFavourites));
+    showFavouritesOnWebsite(newFavourites);
+  }
 }
-
 export { addArtistToFavourites, showFavouriteArtists };
