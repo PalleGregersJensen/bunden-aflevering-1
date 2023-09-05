@@ -36,6 +36,8 @@ async function start() {
   document.querySelector("#grunge-checkbox").addEventListener("change", filterByGenre);
   document.querySelector("#rock-checkbox").addEventListener("change", filterByGenre);
   document.querySelector("#other-checkbox").addEventListener("change", filterByGenre);
+  // sort by functionalities
+  document.querySelector("#sort-by").addEventListener("change", handleSortBy);
   // show favourites
   document.querySelector("#show-favourites-button").addEventListener("click", showFavouriteArtists);
   // show all artists and end favourites view
@@ -83,8 +85,18 @@ function showArtistsOnWebsite(artistList) {
 }
 
 // Sort by name
-
-// Sort by active
+function handleSortBy() {
+  const sortBy = document.querySelector("#sort-by").value;
+  if (sortBy === "name-a-z") {
+    console.log("name-a-z");
+    artists.sort((a, b) => a.name.localeCompare(b.name));
+    showArtistsOnWebsite(artists);
+  } else if (sortBy === "active-since-low-to-high") {
+    console.log("active-since-low-to-high");
+    artists.sort((a, b) => a.activeSince - b.activeSince);
+    showArtistsOnWebsite(artists);
+} 
+}
 
 // Filter by genre
 function filterByGenre() {

@@ -17,9 +17,10 @@ loadFavoritesFromLocalStorage();
 
 // Add artist to favourites and push to favourites-array
 function addArtistToFavourites(artistObject) {
-  if (newFavourites.find((artistObject) => newFavourites.includes(artistObject))) {
-    console.log("Artist already in list");
-  } else {
+//   if (newFavourites.find((artistObject) => newFavourites.includes(artistObject))) {
+//     console.log("Artist already in list");
+//   } else
+  {
     console.log("læses dette");
     console.log(artistObject);
     favourites.push(artistObject);
