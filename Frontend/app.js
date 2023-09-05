@@ -6,7 +6,7 @@ import {
   deleteArtistClicked,
   updateArtist,
   selectedArtist,
-  closeUpdateForm
+  closeUpdateForm,
 } from "./crud-functions.js";
 
 import { addArtistToFavourites, showFavouriteArtists } from "./favourites.js";
@@ -17,6 +17,10 @@ let endpoint = "http://localhost:3000";
 let artists = [];
 let favourites = [];
 let filteredArtists = [];
+let rockArtists = [];
+let bluesArtists = [];
+let grungeArtists = [];
+let otherArtists = [];
 
 window.addEventListener("load", start);
 
@@ -35,10 +39,11 @@ async function start() {
   // search functionality
   document.querySelector("#searchfield").addEventListener("keyup", searchArtist);
   // filter categories checked
-  document.querySelector("#blues-checkbox").addEventListener("change", filterByGenre);
-  document.querySelector("#grunge-checkbox").addEventListener("change", filterByGenre);
-  document.querySelector("#rock-checkbox").addEventListener("change", filterByGenre);
-  document.querySelector("#other-checkbox").addEventListener("change", filterByGenre);
+  document.querySelector("#checkboxes").addEventListener("change", filterByGenre);
+  // document.querySelector("#blues-checkbox").addEventListener("change", filterByGenre);
+  // document.querySelector("#grunge-checkbox").addEventListener("change", filterByGenre);
+  // document.querySelector("#rock-checkbox").addEventListener("change", filterByGenre);
+  // document.querySelector("#other-checkbox").addEventListener("change", filterByGenre);
   // sort by functionalities
   document.querySelector("#sort-by").addEventListener("change", handleSortBy);
   // show favourites
@@ -50,7 +55,7 @@ async function start() {
   document.querySelector("#show-all-artists-button").classList.add("hidden");
   // close create new artist form
   document.querySelector("#form-create-new-artist-close-button").addEventListener("click", closeCreateNewArtistForm);
-  // close update artist form 
+  // close update artist form
   document.querySelector("#form-update-artist-cancel-button").addEventListener("click", closeUpdateForm);
   // close dialog no favourites selected
 }
@@ -88,11 +93,154 @@ function showArtistsOnWebsite(artistList) {
   }
 }
 
-// Sort by name
+// Filter by genre
+function filterByGenre() {
+  console.log("Filter by genre");
+
+  const rockGenre = document.querySelector("#rock-checkbox");
+  const bluesGenre = document.querySelector("#blues-checkbox");
+  const grungeGenre = document.querySelector("#grunge-checkbox");
+  const otherGenre = document.querySelector("#other-checkbox");
+
+  const selectedGenres = [];
+
+  if (rockGenre.checked) {
+    selectedGenres.push("Rock");
+  }
+
+  if (bluesGenre.checked) {
+    selectedGenres.push("Blues");
+  }
+
+  if (grungeGenre.checked) {
+    selectedGenres.push("Grunge");
+  }
+
+  if (otherGenre.checked) {
+    selectedGenres.push("Other");
+  }
+
+  if (selectedGenres.length === 0) {
+    // No genres selected, show all artists
+    showArtistsOnWebsite(artists);
+  } else {
+    // Filter artists based on selected genres
+    const filteredArtists = artists.filter((artist) => selectedGenres.includes(artist.genres));
+    showArtistsOnWebsite(filteredArtists);
+
+    const sortBy = document.querySelector("#sort-by").value;
+    // filteredArtists = filterByGenre();
+    console.log(filteredArtists);
+    if (sortBy === "name-a-z") {
+      console.log("name-a-z");
+      filteredArtists.sort((a, b) => a.name.localeCompare(b.name));
+      showArtistsOnWebsite(filteredArtists);
+    } else if (sortBy === "active-since-low-to-high") {
+      console.log("active-since-low-to-high");
+      filteredArtists.sort((a, b) => a.activeSince - b.activeSince);
+      showArtistsOnWebsite(filteredArtists);
+    }
+  }
+}
+
+// // Filter by genre
+// function filterByGenre() {
+//   console.log("Filter by genre");
+//   const rockGenre = document.querySelector("#rock-checkbox");
+//   const bluesGenre = document.querySelector("#blues-checkbox");
+//   const grungeGenre = document.querySelector("#grunge-checkbox");
+//   const otherGenre = document.querySelector("#other-checkbox");
+//   if (rockGenre.checked) {
+//     console.log("rockgenre checked");
+//     const rockArtists = artists.filter(checkRockGenre);
+//     console.log(rockArtists);
+//     showArtistsOnWebsite(rockArtists);
+//   } else if (bluesGenre.checked) {
+//     console.log("bluesgenre checked");
+//     const bluesArtists = artists.filter(checkBluesGenre);
+//     console.log(bluesArtists);
+//     showArtistsOnWebsite(bluesArtists);
+//   } else if (grungeGenre.checked) {
+//     console.log("grungegenre checked");
+//     const grungeArtists = artists.filter(checkGrungeGenre);
+//     console.log(grungeArtists);
+//     showArtistsOnWebsite(grungeArtists);
+//   } else if (otherGenre.checked) {
+//     console.log("othergenre checked");
+//     const otherArtists = artists.filter(checkOtherGenre);
+//     console.log(otherArtists);
+//     showArtistsOnWebsite(otherArtists);
+//   } else if (!otherGenre.checked && !grungeGenre.checked && !rockGenre.checked && !bluesGenre.checked) {
+//     showArtistsOnWebsite(artists);
+//   } else if (otherGenre.checked && grungeGenre.checked && rockGenre.checked && bluesGenre.checked) {
+//     showArtistsOnWebsite(artists);
+//   } else if (rockGenre.checked && bluesGenre.checked) {
+//       filteredArtists = rockArtists.concat(bluesArtists);
+//       console.log(filteredArtists);
+//   }
+// }
+
+// function checkRockGenre(artist) {
+//   console.log("Rockgenre checked ny funktion");
+//   return artist.genres === "Rock";
+// }
+
+// function checkBluesGenre(artist) {
+//   console.log("Bluesgenre checked ny funktion");
+//   return artist.genres === "Blues";
+// }
+
+// function checkGrungeGenre(artist) {
+//   console.log("Grungegenre checked ny funktion");
+//   return artist.genres === "Grunge";
+// }
+
+// function checkOtherGenre(artist) {
+//   console.log("Othergenre checked ny funktion");
+//   return artist.genres === "Other";
+// }
+
+// function checkGenre(artist) {
+//   const rockGenre = document.querySelector("#rock-checkbox");
+//   const bluesGenre = document.querySelector("#blues-checkbox");
+//   const grungeGenre = document.querySelector("#grunge-checkbox");
+//   const otherGenre = document.querySelector("#other-checkbox");
+
+//   if (otherGenre.checked && rockGenre.checked) {
+//     return artist.genres === "Other" || artist.genres === "Rock";
+//   } else if (grungeGenre.checked && rockGenre.checked) {
+//     return artist.genres === "Grunge" || artist.genres === "Rock";
+//   } else if (grungeGenre.checked && bluesGenre.checked) {
+//     return artist.genres === "Grunge" || artist.genres === "Blues";
+//   } else if (otherGenre.checked && bluesGenre.checked) {
+//     return artist.genres === "Other" || artist.genres === "Blues";
+//   } else if (grungeGenre.checked) {
+//     return artist.genres === "Grunge";
+//   } else if (rockGenre.checked) {
+//     return artist.genres === "Rock";
+//   } else if (bluesGenre.checked) {
+//     return artist.genres === "Blues";
+//   } else if (otherGenre.checked) {
+//     return artist.genres === "Other";
+//   } else {
+//     return true; // If no genre checkboxes are checked, show all artists
+//   }
+// }
+// Sort by name and activeSince
 function handleSortBy() {
   const sortBy = document.querySelector("#sort-by").value;
   // filteredArtists = filterByGenre();
+  const rockGenre = document.querySelector("#rock-checkbox");
+  const bluesGenre = document.querySelector("#blues-checkbox");
+  const grungeGenre = document.querySelector("#grunge-checkbox");
+  const otherGenre = document.querySelector("#other-checkbox");
+  
   console.log(filteredArtists);
+
+
+  if (rockGenre.checked || bluesGenre.checked || otherGenre.checked || grungeGenre.checked) {
+    filterByGenre()
+  } else {
   if (sortBy === "name-a-z") {
     console.log("name-a-z");
     artists.sort((a, b) => a.name.localeCompare(b.name));
@@ -101,68 +249,9 @@ function handleSortBy() {
     console.log("active-since-low-to-high");
     artists.sort((a, b) => a.activeSince - b.activeSince);
     showArtistsOnWebsite(artists);
-} 
-}
-
-// Filter by genre
-function filterByGenre() {
-  console.log("Filter by genre");
-  const rockGenre = document.querySelector("#rock-checkbox");
-  const bluesGenre = document.querySelector("#blues-checkbox");
-  const grungeGenre = document.querySelector("#grunge-checkbox");
-  const otherGenre = document.querySelector("#other-checkbox");
-  if (rockGenre.checked) {
-    console.log("rockgenre checked");
-    const rockArtists = artists.filter(checkGenre);
-    console.log(rockArtists);
-    showArtistsOnWebsite(rockArtists);
-  } else if (bluesGenre.checked) {
-    console.log("bluesgenre checked");
-    const bluesArtists = artists.filter(checkGenre);
-    console.log(bluesArtists);
-    showArtistsOnWebsite(bluesArtists);
-  } else if (grungeGenre.checked) {
-    console.log("grungegenre checked");
-    const grungeArtists = artists.filter(checkGenre);
-    console.log(grungeArtists);
-    showArtistsOnWebsite(grungeArtists);
-  } else if (otherGenre.checked) {
-    console.log("othergenre checked");
-    const otherArtists = artists.filter(checkGenre);
-    console.log(otherArtists);
-    showArtistsOnWebsite(otherArtists);
-  } else if (!otherGenre.checked && !grungeGenre.checked && !rockGenre.checked && !bluesGenre.checked) {
-    showArtistsOnWebsite(artists);
   }
 }
-
-function checkGenre(artist) {
-  const rockGenre = document.querySelector("#rock-checkbox");
-  const bluesGenre = document.querySelector("#blues-checkbox");
-  const grungeGenre = document.querySelector("#grunge-checkbox");
-  const otherGenre = document.querySelector("#other-checkbox");
-
-  if (otherGenre.checked && rockGenre.checked) {
-    return artist.genres === "Other" || artist.genres === "Rock";
-  } else if (grungeGenre.checked && rockGenre.checked) {
-    return artist.genres === "Grunge" || artist.genres === "Rock";
-  } else if (grungeGenre.checked && bluesGenre.checked) {
-    return artist.genres === "Grunge" || artist.genres === "Blues";
-  } else if (otherGenre.checked && bluesGenre.checked) {
-    return artist.genres === "Other" || artist.genres === "Blues";
-  } else if (grungeGenre.checked) {
-    return artist.genres === "Grunge";
-  } else if (rockGenre.checked) {
-    return artist.genres === "Rock";
-  } else if (bluesGenre.checked) {
-    return artist.genres === "Blues";
-  } else if (otherGenre.checked) {
-    return artist.genres === "Other";
-  } else {
-    return true; // If no genre checkboxes are checked, show all artists
-  }
 }
-
 // function checkGenre(artist) {
 //   console.log("Check genre");
 //   const rockGenre = document.querySelector("#rock-checkbox");
