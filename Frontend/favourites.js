@@ -17,15 +17,20 @@ loadFavoritesFromLocalStorage();
 
 // Add artist to favourites and push to favourites-array
 function addArtistToFavourites(artistObject) {
-  console.log("læses dette");
-  console.log(artistObject);
-  favourites.push(artistObject);
-  console.log(favourites);
-  // lav favourites om til string
-  let favouritesAsString = JSON.stringify(favourites);
-  console.log(favourites);
-  localStorage.setItem("favouritesToBeStored", favouritesAsString);
+  if (newFavourites.find((artistObject) => newFavourites.includes(artistObject))) {
+    console.log("Artist already in list");
+  } else {
+    console.log("læses dette");
+    console.log(artistObject);
+    favourites.push(artistObject);
+    console.log(favourites);
+    // lav favourites om til string
+    let favouritesAsString = JSON.stringify(favourites);
+    console.log(favourites);
+    localStorage.setItem("favouritesToBeStored", favouritesAsString);
+  }
 }
+
 // show favourite artists on website and hide other features, that does not work here
 function showFavouriteArtists() {
   console.log("Show favourite artists");
@@ -52,7 +57,7 @@ function showFavouritesOnWebsite(artistList) {
     const favouritesHtml = /*html*/ `<div>Name: ${artist.name} <br> Active since: ${artist.activeSince} <br> <img src="${artist.image}"/> <br> <button class="remove-artist-from-favourites-button">Remove from favourites</button> <br></button></div></button>`;
     document.querySelector("#artist-list").insertAdjacentHTML("beforeend", favouritesHtml);
 
-    // add to fovurites
+    // remove from fovurites
     document
       .querySelector("#artist-list div:last-child .remove-artist-from-favourites-button")
       .addEventListener("click", () => removeArtistFromNewFavourites(artist));
