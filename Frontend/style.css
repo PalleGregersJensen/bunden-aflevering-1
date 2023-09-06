@@ -15,13 +15,14 @@ header {
   width: auto;
   height: auto;
   gap: 2em;
-  padding: 5%; 
+  padding: 2%; 
 }
 
 /* images in full list of artists */
 #artist-list, img {
-  height: 25vh;
-  width: 20vw;
+    width: 100%;
+    height: 25vh;
+    object-fit: fill;
 }
 
 .artist-container-in-create {
