@@ -101,7 +101,11 @@ function showArtistInDetailView(artistObject) {
   document.querySelector("#detail-view-active-since").textContent = `Active since: ${artistObject.activeSince}`;
   document.querySelector("#detail-view-genres").textContent = `Genres: ${artistObject.genres}`;
   document.querySelector("#detail-view-labels").textContent = `Labels: ${artistObject.labels}`;
-  document.querySelector("#detail-view-website").textContent = `Website: ${artistObject.website}`;
+  document.querySelector("#detail-view-website").innerHTML="Website: ";
+  const artistWebsiteHtml = /*html*/ `<a href=${artistObject.website}>Visit ${artistObject.name}'s website</a>`;
+  document.querySelector(
+    "#detail-view-website"
+  ).insertAdjacentHTML("beforeend", artistWebsiteHtml);
   document.querySelector("#detail-view-image").src= `${artistObject.image}`;
   document.querySelector("#detail-view-short-description").textContent = `Description: ${artistObject.shortDescription}`;
   document.querySelector("#dialog-detail-view-artist").showModal();

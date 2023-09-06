@@ -38,3 +38,9 @@ border: 0.1em solid whitesmoke;
 .hidden {
   display: none;
 }
+
+
+#detail-view-image{
+width: 20vw;
+height: 20vh;
+}
