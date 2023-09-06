@@ -71,6 +71,11 @@ function showArtistsOnWebsite(artistList) {
     const artistHtml = /*html*/ `<div class="artist-container-in-create"><div>Name: ${artist.name} <br> Active since: ${artist.activeSince} <br> <img src="${artist.image}"/> <br></div><button class="update-artist-button">Update</button> <button class="delete-artist-button">Delete</button> <br> <button class="add-to-favourites">Add to favourites</button></button></div></button>`;
     document.querySelector("#artist-list").insertAdjacentHTML("beforeend", artistHtml);
 
+    // show detail view
+    document
+      .querySelector("#artist-list div:last-child")
+      .addEventListener("click", () => showArtistInDetailView(artist));
+
     // delete artist
     document
       .querySelector("#artist-list div:last-child .delete-artist-button")
@@ -86,6 +91,26 @@ function showArtistsOnWebsite(artistList) {
       .querySelector("#artist-list div:last-child .add-to-favourites")
       .addEventListener("click", () => addArtistToFavourites(artist));
   }
+}
+
+// show artist in detail view
+function showArtistInDetailView(artistObject) {
+  console.log(artistObject);
+  document.querySelector("#detail-view-name").textContent = `Name: ${artistObject.name}`;
+  document.querySelector("#detail-view-birthdate").textContent = `Birthdate: ${artistObject.birthdate}`;
+  document.querySelector("#detail-view-active-since").textContent = `Active since: ${artistObject.activeSince}`;
+  document.querySelector("#detail-view-genres").textContent = `Genres: ${artistObject.genres}`;
+  document.querySelector("#detail-view-labels").textContent = `Labels: ${artistObject.labels}`;
+  document.querySelector("#detail-view-website").textContent = `Website: ${artistObject.website}`;
+  document.querySelector("#detail-view-image").src= `${artistObject.image}`;
+  document.querySelector("#detail-view-short-description").textContent = `Description: ${artistObject.shortDescription}`;
+  document.querySelector("#dialog-detail-view-artist").showModal();
+  document.querySelector("#close-detail-view-button").addEventListener("click", closeDetailView);
+}
+
+// close detail view about artist
+function closeDetailView() {
+  document.querySelector("#dialog-detail-view-artist").close();
 }
 
 // Filter by genre
