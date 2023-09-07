@@ -1,129 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="#" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="#" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
     <title>Music artists</title>
-</head>
-<body>
-    <header id="header">Music artists</header>
-    <div id="sort-search-filter-create">
-    <input id="searchfield" type="text" placeholder="Search for artist">
-    <button id="search-button">Search</button>
-    <!-- Sort by -->
-    <select id="sort-by">
-        <option></option>
-        <option value="name-a-z">Name (A-Z)</option>
-        <option value="active-since-low-to-high">Active since (low-to-high)</option>
-    </select>
-    <!-- Filter categories -->
-    <label>Rock</label>
-    <input id="rock-checkbox" type="checkbox"></input>
-    <label>Grunge</label>
-    <input id="grunge-checkbox" type="checkbox"></input>
-    <label>Blues</label>
-    <input id="blues-checkbox" type="checkbox"></input>
-    <label>Other</label>
-    <input id="other-checkbox" type="checkbox"></input>
-    
-    <!-- Create new artist button -->
-    <button id="create-new-artist-button">Create new artist</button>
-</div>
-    <!-- display favourites -->
-    <button id="show-favourites-button">Show favourite artists</button>
+  </head>
+  <body>
+    <main id="main">
+      <header id="header">Music artists</header>
+      <div id="sort-search-filter-create">
+        <input id="searchfield" type="text" placeholder="Search for artist" />
+        <button id="search-button">Search</button>
+        <!-- Sort by -->
+        <select id="sort-by">
+          <option></option>
+          <option value="name-a-z">Name (A-Z)</option>
+          <option value="active-since-low-to-high">Active since (low-to-high)</option>
+        </select>
+        <!-- Filter categories -->
+        <label>Rock</label>
+        <input id="rock-checkbox" type="checkbox" />
+        <label>Grunge</label>
+        <input id="grunge-checkbox" type="checkbox" />
+        <label>Blues</label>
+        <input id="blues-checkbox" type="checkbox" />
+        <label>Other</label>
+        <input id="other-checkbox" type="checkbox" />
 
-    <!-- display favourites -->
-    <button id="show-all-artists-button" class="hidden">Show all artists</button>
+        <!-- Create new artist button -->
+        <button id="create-new-artist-button">Create new artist</button>
+      </div>
+      <!-- display favourites -->
+      <button id="show-favourites-button">Show favourite artists</button>
 
+      <!-- display favourites -->
+      <button id="show-all-artists-button" class="hidden">Show all artists</button>
+
+      <!-- grid-container for full artists list -->
+      <div id="artist-list"></div>
+
+      <!-- footer -->
+      <!-- <footer id="footer">
+        <h3>Made by Palle G. Jensen</h3>
+      </footer> -->
+    </main>
     <!-- Error message in case of no favourites chosen -->
     <dialog id="message-empty-list">
-        <p>No favourites selected</p>
-        <button id="message-empty-list-ok-button">OK</button>
+      <p>No favourites selected</p>
+      <button id="message-empty-list-ok-button">OK</button>
     </dialog>
-    <!-- grid-container for full artists list -->
-    <div id="artist-list"></div>    
 
     <!-- dialog detail view -->
     <dialog id="dialog-detail-view-artist">
-        <p>Artist information</p>    
-        <p id="detail-view-name">Name</p>
-        <p id="detail-view-birthdate">Birthdate</p>
-        <p id="detail-view-active-since">Active since</p>
-        <p id="detail-view-genres">Genre</p> 
-        <p id="detail-view-labels">Labels</p>
-        <p id="detail-view-website">Website: </p>
-        <img id="detail-view-image"/>
-        <p id="detail-view-short-description">Short description</p>
-        <button id="close-detail-view-button">Close vindow</button>
+      <p>Artist information</p>
+      <p id="detail-view-name">Name</p>
+      <p id="detail-view-birthdate">Birthdate</p>
+      <p id="detail-view-active-since">Active since</p>
+      <p id="detail-view-genres">Genre</p>
+      <p id="detail-view-labels">Labels</p>
+      <p id="detail-view-website">Website:</p>
+      <img id="detail-view-image" />
+      <p id="detail-view-short-description">Short description</p>
+      <button id="close-detail-view-button">Close vindow</button>
     </dialog>
 
     <!-- dialog create new artist -->
     <dialog id="dialog-create-new-artist">
-        <form id="form-create-new-artist">
-            <label>Create new artist</label> <br>
-            <label>Name</label>
-            <input type="text" id="create-new-artist-name" value="" name="name">
-            <label>Birthdate</label>
-            <input type="text" id="create-new-artist-birthdate" placeholder="YYYY-MM-DD" value="" name="birthdate">
-            <label>Active since</label>
-            <input type="text" id="create-new-artist-active-since" value="" name="active-since">
-            <label>Genre</label> <br>
-            <label for="create-new-artist-genre-blues">Blues</label>
-            <input type="radio" id="create-new-artist-genre-blues" name="genres" value="Blues" >
-            <label for="create-new-artist-genre-grunge">Grunge</label>
-            <input type="radio" id="create-new-artist-genre-grunge" name="genres" value="Grunge" >
-            <label for="create-new-artist-genre-rock">Rock</label>
-            <input type="radio" id="create-new-artist-genre-rock" name="genres" value="Rock" >
-            <label for="create-new-artist-genre-other">Other</label>
-            <input type="radio" id="create-new-artist-genre-other" name="genres" value="Other" >
-            <label>Labels</label>
-            <input type="text" id="create-new-artist-labels" name="labels">
-            <label>Website</label>
-            <input type="url" id="create-new-artist-website" name="website">
-            <label>Image</label>
-            <input type="url" id="create-new-artist-image" name="image">
-            <label>Short description</label>
-            <input textarea name="short-description" rows="4" cols="50" id="create-new-artist-short-description" name="short-description">
-            <button type="submit">Submit</button>
-        </form>
-        <button id="form-create-new-artist-close-button">Cancel</button>
+      <form id="form-create-new-artist">
+        <label>Create new artist</label> <br />
+        <label>Name</label>
+        <input type="text" id="create-new-artist-name" value="" name="name" />
+        <label>Birthdate</label>
+        <input type="text" id="create-new-artist-birthdate" placeholder="YYYY-MM-DD" value="" name="birthdate" />
+        <label>Active since</label>
+        <input type="text" id="create-new-artist-active-since" value="" name="active-since" />
+        <label>Genre</label> <br />
+        <label for="create-new-artist-genre-blues">Blues</label>
+        <input type="radio" id="create-new-artist-genre-blues" name="genres" value="Blues" />
+        <label for="create-new-artist-genre-grunge">Grunge</label>
+        <input type="radio" id="create-new-artist-genre-grunge" name="genres" value="Grunge" />
+        <label for="create-new-artist-genre-rock">Rock</label>
+        <input type="radio" id="create-new-artist-genre-rock" name="genres" value="Rock" />
+        <label for="create-new-artist-genre-other">Other</label>
+        <input type="radio" id="create-new-artist-genre-other" name="genres" value="Other" />
+        <label>Labels</label>
+        <input type="text" id="create-new-artist-labels" name="labels" />
+        <label>Website</label>
+        <input type="url" id="create-new-artist-website" name="website" />
+        <label>Image</label>
+        <input type="url" id="create-new-artist-image" name="image" />
+        <label>Short description</label>
+        <input
+          textarea
+          name="short-description"
+          rows="4"
+          cols="50"
+          id="create-new-artist-short-description"
+          name="short-description"
+        />
+        <button type="submit">Submit</button>
+      </form>
+      <button id="form-create-new-artist-close-button">Cancel</button>
     </dialog>
 
     <!-- dialog update artist object-->
     <dialog id="dialog-update-artist">
-        <form id="form-update-artist" method="dialog">
-            <label>Update artist</label> <br>
-            <label>Name</label>
-            <input type="text" id="update-artist-name" value="" name="name"> <br>
-            <label>Birthdate</label> 
-            <input type="text" id="update-artist-birthdate" value="" name="birthdate"> <br>
-            <label>Active since</label>
-            <input type="text" id="update-artist-active-since" value="" name="active-since"> <br>
-            <label>Genre</label> <br>
-            <label for="create-new-artist-genre-blues">Blues</label> 
-            <input type="radio" id="update-artist-genre-blues" name="genres" value="Blues"> <br> 
-            <label for="update-artist-genre-grunge">Grunge</label>
-            <input type="radio" id="update-artist-genre-grunge" name="genres" value="Grunge" > <br>
-            <label for="update-artist-genre-rock">Rock</label>
-            <input type="radio" id="create-new-artist-genre-rock" name="genres" value="Rock" > <br>
-            <label for="update-artist-genre-other">Other</label>
-            <input type="radio" id="update-artist-genre-other" name="genres" value="Other" > <br>
-            <label>Labels</label>
-            <input type="text" id="update-artist-labels" name="labels"> <br>
-            <label>Website</label>
-            <input type="url" id="update-artist-website" name="website"> <br>
-            <label>Image</label>
-            <input type="url" id="update-artist-image" name="image"> <br>
-            <label>Short description</label>
-            <input type="textarea" rows="4" cols="50" id="update-artist-short-description" name="short-description"> <br>
-            <button type="submit" id="update-artist-button">Submit</button>
-        </form>
-        <button id="form-update-artist-cancel-button">Cancel</button>
+      <form id="form-update-artist" method="dialog">
+        <label>Update artist</label> <br />
+        <label>Name</label>
+        <input type="text" id="update-artist-name" value="" name="name" /> <br />
+        <label>Birthdate</label>
+        <input type="text" id="update-artist-birthdate" value="" name="birthdate" /> <br />
+        <label>Active since</label>
+        <input type="text" id="update-artist-active-since" value="" name="active-since" /> <br />
+        <label>Genre</label> <br />
+        <label for="create-new-artist-genre-blues">Blues</label>
+        <input type="radio" id="update-artist-genre-blues" name="genres" value="Blues" /> <br />
+        <label for="update-artist-genre-grunge">Grunge</label>
+        <input type="radio" id="update-artist-genre-grunge" name="genres" value="Grunge" /> <br />
+        <label for="update-artist-genre-rock">Rock</label>
+        <input type="radio" id="create-new-artist-genre-rock" name="genres" value="Rock" /> <br />
+        <label for="update-artist-genre-other">Other</label>
+        <input type="radio" id="update-artist-genre-other" name="genres" value="Other" /> <br />
+        <label>Labels</label>
+        <input type="text" id="update-artist-labels" name="labels" /> <br />
+        <label>Website</label>
+        <input type="url" id="update-artist-website" name="website" /> <br />
+        <label>Image</label>
+        <input type="url" id="update-artist-image" name="image" /> <br />
+        <label>Short description</label>
+        <input type="textarea" rows="4" cols="50" id="update-artist-short-description" name="short-description" />
+        <br />
+        <button type="submit" id="update-artist-button">Submit</button>
+      </form>
+      <button id="form-update-artist-cancel-button">Cancel</button>
     </dialog>
 
-
     <script src="app.js" type="module"></script>
-</body>
+  </body>
 </html>

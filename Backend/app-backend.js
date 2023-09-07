@@ -96,18 +96,3 @@ app.delete("/artists/:id", async (request, response) => {
 
   response.json(artists);
 });
-
-
-// Push artist to favourites.json
-// app.post("/favourites", async (request, response) => {
-//   const newArtist = request.body;
-//   console.log(newArtist);
-//   // newArtist.id = new Date().getTime();
-//   console.log(newArtist.id);
-//   const data = await fs.readFile("favourites.json");
-//   const favourites = JSON.parse(data);
-//   artists.push(newArtist);
-//   // console.log(newArtist);
-//   fs.writeFile("favourites.json", JSON.stringify(favourites));
-//   response.json(artists);
-// });

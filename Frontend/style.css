@@ -1,12 +1,21 @@
 body {
   background-color: skyblue;
+  /* display: flex;
+  flex-direction: column;
+  min-height: 100vh; */
+}
+
+main{
+    display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 18vh - 18);
 }
 
 header {
-    height: 18vh;
-    font-size: larger;
-    display: flex;
-    justify-content: center;
+  height: 18vh;
+  font-size: larger;
+  display: flex;
+  justify-content: center;
 }
 
 #artist-list {
@@ -15,19 +24,20 @@ header {
   width: auto;
   height: auto;
   gap: 2em;
-  padding: 2%; 
+  padding: 2%;
 }
 
 /* images in full list of artists */
-#artist-list, img {
-    width: 100%;
-    height: 25vh;
-    object-fit: fill;
+#artist-list,
+img {
+  width: 100%;
+  height: 25vh;
+  object-fit: fill;
 }
 
 .artist-container-in-create {
-outline: solid 0.1em black;
-border: 0.1em solid whitesmoke; 
+  outline: solid 0.1em black;
+  border: 0.1em solid whitesmoke;
 }
 
 #form-create-new-artist {
@@ -39,8 +49,34 @@ border: 0.1em solid whitesmoke;
   display: none;
 }
 
-
-#detail-view-image{
-width: 20vw;
-height: 20vh;
+#detail-view-image {
+  width: 20vw;
+  height: 20vh;
 }
+
+.artist-container-in-favourites {
+  outline: solid 0.1em black;
+  border: 0.1em solid whitesmoke;
+}
+
+/* #footer {
+  position: fixed;
+  height: 18vh;
+  bottom: 0;
+  width: 100%;
+  background-color: red; */
+  /* text-align: center; Centrer indholdet i footer */
+  /* padding: 10px; Tilføj en smule polstring for bedre udseende  */
+/* }  */
+
+/* html, body {
+    width: 100%;
+    height: 100%;
+}
+
+article {
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 100%;
+} */

@@ -1,4 +1,4 @@
-import { favourites, endpoint } from "./app.js";
+import { favourites, endpoint, closeDetailView } from "./app.js";
 
 let newFavourites = [];
 let favouritesAsString;
@@ -8,6 +8,7 @@ function loadFavoritesFromLocalStorage() {
   const favoritesAsString = localStorage.getItem("favouritesToBeStored");
   if (favoritesAsString) {
     newFavourites = JSON.parse(favoritesAsString);
+    console.log(newFavourites);
     showFavouritesOnWebsite(newFavourites);
   }
 }
@@ -17,11 +18,15 @@ loadFavoritesFromLocalStorage();
 
 // Add artist to favourites and push to favourites-array
 function addArtistToFavourites(artistObject) {
-  // if (newFavourites.find((artistObject) => newFavourites.includes(artistObject))) {
+  console.log("Add artist yo favourites");
+  console.log(newFavourites);
+  // newFavourites.findIndex(checkFavourites);
+  // console.log(checkFavourites);
+  // if (favourites > -1) {
   //   console.log("Artist already in list");
+  //   console.log(artistObject);
   // } else
-  {
-    console.log("læses dette");
+  
     console.log(artistObject);
     favourites.push(artistObject);
     console.log(favourites);
@@ -30,10 +35,11 @@ function addArtistToFavourites(artistObject) {
     console.log(favourites);
     localStorage.setItem("favouritesToBeStored", favouritesAsString);
   }
-}
+
 
 // show favourite artists on website and hide other features, that does not work here
-function showFavouriteArtists() {
+function setupShowFavouriteArtists() {
+  closeDetailView();
   console.log("Show favourite artists");
   document.querySelector("#sort-search-filter-create").classList.add("hidden");
   document.querySelector("#show-favourites-button").classList.add("hidden");
@@ -50,21 +56,20 @@ function showFavouriteArtists() {
 function showFavouritesOnWebsite(artistList) {
   document.querySelector("#artist-list").innerHTML = "";
   if (artistList.length === 0) {
-      console.log("Empty array in favourites");
+    console.log("Empty array in favourites");
     document.querySelector("#message-empty-list").showModal();
     document.querySelector("#message-empty-list-ok-button").addEventListener("click", closeNoFavouritesSelectedDialog);
-  } else 
-  {
-  for (const artist of artistList) {
-    const favouritesHtml = /*html*/ `<div>Name: ${artist.name} <br> Active since: ${artist.activeSince} <br> <img src="${artist.image}"/> <br> <button class="remove-artist-from-favourites-button">Remove from favourites</button> <br></button></div></button>`;
-    document.querySelector("#artist-list").insertAdjacentHTML("beforeend", favouritesHtml);
+  } else {
+    for (const artist of artistList) {
+      const favouritesHtml = /*html*/ `<div class="artist-container-in-favourites"><div>Name: ${artist.name} <br> Active since: ${artist.activeSince} <br> <img src="${artist.image}"/> <br></div> <button class="remove-artist-from-favourites-button">Remove from favourites</button> <br></div>`;
+      document.querySelector("#artist-list").insertAdjacentHTML("beforeend", favouritesHtml);
 
-    // remove from fovurites
-    document
-      .querySelector("#artist-list div:last-child .remove-artist-from-favourites-button")
-      .addEventListener("click", () => removeArtistFromNewFavourites(artist));
+      // remove from fovurites
+      document
+        .querySelector("#artist-list div:last-child .remove-artist-from-favourites-button")
+        .addEventListener("click", () => removeArtistFromNewFavourites(artist));
+    }
   }
-}
 }
 
 function closeNoFavouritesSelectedDialog() {
@@ -77,14 +82,13 @@ function removeArtistFromNewFavourites(artistObject) {
   console.log(newFavourites);
   const artistToBeRemoved = newFavourites.indexOf(artistObject);
   console.log(artistToBeRemoved);
-  // const artistToBeRemovedSeceondPosition = artistToBeRemoved;
-  //   console.log(artistToBeRemovedSeceondPosition);
   if (artistToBeRemoved !== -1) {
     const removedArtist = newFavourites.splice(artistToBeRemoved, 1);
     console.log(removedArtist);
     console.log(newFavourites);
     localStorage.setItem("favouritesToBeStored", JSON.stringify(newFavourites));
     showFavouritesOnWebsite(newFavourites);
+  } else {
   }
 }
-export { addArtistToFavourites, showFavouriteArtists };
+export { addArtistToFavourites, setupShowFavouriteArtists };

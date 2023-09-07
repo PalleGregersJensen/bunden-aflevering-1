@@ -1,6 +1,15 @@
-import { endpoint, start } from "./app.js";
+import { endpoint, start, closeDetailView } from "./app.js";
 
 let selectedArtist;
+
+// Get JSON-data
+async function getJsonData() {
+  const response = await fetch(`${endpoint}/artists`);
+  console.log(response);
+  const data = await response.json();
+  console.log(data);
+  return data;
+}
 
 // create new artist button clicked
 function createNewArtistClicked() {
@@ -60,6 +69,7 @@ async function createNewArtist(event) {
 }
 
 function updateArtistClicked(artistObject) {
+  closeDetailView();
   console.log("update artist clciked");
   selectedArtist = artistObject;
   console.log(selectedArtist);
@@ -76,6 +86,7 @@ function updateArtistClicked(artistObject) {
 }
 
 async function updateArtist(event) {
+  closeDetailView();
   console.log("update artist");
   event.preventDefault();
   const form = event.target;
@@ -88,7 +99,7 @@ async function updateArtist(event) {
   const website = form.website.value;
   const shortDescription = form.elements["short-description"].value;
   // update user
-  const artistToUpdate = { name, birthdate, activeSince, image, genres, labels, website, shortDescription, };
+  const artistToUpdate = { name, birthdate, activeSince, image, genres, labels, website, shortDescription };
   console.log(artistToUpdate);
   console.log(selectedArtist.id);
   const artistAsJson = JSON.stringify(artistToUpdate);
@@ -106,6 +117,7 @@ async function updateArtist(event) {
 }
 
 async function deleteArtistClicked(artistId) {
+  closeDetailView();
   console.log("delete artist clciked");
   console.log(artistId);
   const response = await fetch(`${endpoint}/artists/${artistId}`, {
@@ -125,5 +137,6 @@ export {
   deleteArtistClicked,
   updateArtist,
   selectedArtist,
-  closeUpdateForm
+  closeUpdateForm,
+  getJsonData,
 };
