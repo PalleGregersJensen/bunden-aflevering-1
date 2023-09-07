@@ -60,7 +60,7 @@ async function start() {
 function showArtistsOnWebsite(artistList) {
   document.querySelector("#artist-list").innerHTML = "";
   for (const artist of artistList) {
-    const artistHtml = /*html*/ `<div class="artist-container-in-create"><div>Name: ${artist.name} <br> Active since: ${artist.activeSince} <br> <img src="${artist.image}"/> <br></div><button class="update-artist-button">Update</button> <button class="delete-artist-button">Delete</button> <br> <button class="add-to-favourites">Add to favourites</button></button></div></button>`;
+    const artistHtml = /*html*/ `<div class="artist-container-in-create"><div>Name: ${artist.name} <br> Active since: ${artist.activeSince} <br> <img src="${artist.image}"/> <br></div><button class="update-artist-button">Update</button> <button class="delete-artist-button">Delete</button> <br> <button class="add-to-favourites">Add to favourites</button></div>`;
     document.querySelector("#artist-list").insertAdjacentHTML("beforeend", artistHtml);
 
     // show detail view
@@ -78,7 +78,7 @@ function showArtistsOnWebsite(artistList) {
       .querySelector("#artist-list div:last-child .update-artist-button")
       .addEventListener("click", () => updateArtistClicked(artist));
 
-    // add to fovurites
+    // add to favourites
     document
       .querySelector("#artist-list div:last-child .add-to-favourites")
       .addEventListener("click", () => addArtistToFavourites(artist));
